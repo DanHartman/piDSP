@@ -6,7 +6,7 @@ Requirements
 -  You'll need to solder one of the additional RCA Jacks to the S/PDIF Board
 -  [Fresh Raspbian Install](https://www.raspberrypi.org/downloads/raspbian/)
 -  Insert SD Card into reader
--  `dh -h` To find the mount path to the SDCARD ie: `/dev/sdb`
+-  `df -h` To find the mount path to the SDCARD ie: `/dev/sdb`
 -  `umount /dev/card1` && `umount /dev/card2` etc as many partitions as there are
 -  `unzip /path/to/raspbian-jessie.zip`
 -  `sudo dd bs=4M if=/path/to/raspbian-jessie.img of=/dev/card`
