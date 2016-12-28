@@ -19,6 +19,6 @@ A playbook to provision a raspberry pi as a DSP box.  The original intent is to 
 -  [Enable SSH access](http://raspberrypi.stackexchange.com/a/58479) Remount the card && `touch /path/to/boot/ssh`
 -  Insert card into PI and power up
 -  connect pi to network && find ip of the ras pi
--  `ansible-playbook -i ras.pi.ip.addr, -u pi -k deploy/ansible/user.yml` default ssh password is `raspberry`
--  `ansible-playbook -i ras.pi.ip.addr, deploy/ansible/configure.yml`
+-  `ansible-playbook -i ras.pi.ip.addr, -u pi -k deploy/ansible/user.yml` default sudo password is `raspberry`
+-  `ansible-playbook -i ras.pi.ip.addr, --ask-become-pass deploy/ansible/configure.yml` default sudo password is `123456`
 -  `ssh ras.pi.ip.addr`
