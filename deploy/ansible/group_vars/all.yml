@@ -4,6 +4,7 @@ ansible_ssh_common_args: -o ForwardAgent=yes
 hostname: pidsp
 
 apt_packages:
+  - vim
   - git
   - puredata
   - gem
