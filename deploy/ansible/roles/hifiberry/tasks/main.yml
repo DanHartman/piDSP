@@ -1,0 +1,13 @@
+- name: remove driver for onboard sound and enable hifiberry
+  template:
+    src: templates/config.txt
+    dest: /boot/config.txt
+    owner: root
+    mode: 0755
+
+- name: configure ALSA
+  template:
+    src: templates/asound.conf
+    dest: /etc/asound.conf
+    owner: root
+    mode: 0755

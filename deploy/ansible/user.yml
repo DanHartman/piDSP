@@ -8,7 +8,7 @@
       name: "{{ lookup('env', 'USER') }}"
       password: "$6$Qbp/whGNbO$i7HHT0X3Dqea5nNVanuaXG/oghZJthr1kDiiqf9v6T.r1.oYxZqeeEK1RA5Q4GPCyz03H/Ou.hkJtQR4169wa/"
       shell: /bin/bash
-      groups: sudo
+      groups: "sudo,audio"
     register: user
 
   - name: ensure local user's public key is on the host
