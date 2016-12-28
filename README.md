@@ -15,3 +15,7 @@ A playbook to provision a raspberry pi as a DSP box.  The original intent is to 
 -  `umount /dev/card1` && `umount /dev/card2` etc as many partitions as there are
 -  `unzip /path/to/raspbian-jessie.zip`
 -  `sudo dd bs=4M if=/path/to/raspbian-jessie.img of=/dev/card`
+-  connect pi to network && find ip of the ras pi
+-  `ansible-playbook -i ras.pi.ip.addr, -u pi -k deploy/ansible/user.yml`
+-  `ansible-playbook -i ras.pi.ip.addr, deploy/ansible/configure.yml`
+-  `ssh ras.pi.ip.addr`
