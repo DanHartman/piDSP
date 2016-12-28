@@ -1,0 +1,12 @@
+- name: Provision host to operate as dsp box
+  hosts: all
+  become: yes
+  become_method: sudo
+  roles:
+    - { role: configure, tags: ['configure'] }
+    - { role: common, tags: ['common'] }
+  handlers:
+    - name: restart ssh
+      service:
+        name: ssh
+        state: restarted

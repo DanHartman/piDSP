@@ -1,0 +1,43 @@
+- name: set hostname
+  hostname: name={{hostname}}
+
+- name: ensure unattended upgrades are running
+  copy:
+    content: |
+      APT::Periodic::Update-Package-Lists "1";
+      APT::Periodic::Download-Upgradeable-Packages "1";
+      APT::Periodic::AutocleanInterval "7";
+      APT::Periodic::Unattended-Upgrade "1";
+    dest: /etc/apt/apt.conf.d/10periodic
+
+- name: disallow password authentication
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    regexp: "^PasswordAuthentication"
+    line: "PasswordAuthentication no"
+  notify: restart ssh
+
+- name: disallow challenge response authentication
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    regexp: "^ChallengeResponseAuthentication"
+    line: "ChallengeResponseAuthentication no"
+  notify: restart ssh
+
+- name: ensure github.com is a known host
+  lineinfile:
+    dest: /etc/ssh/ssh_known_hosts
+    state: present
+    create: yes
+    regexp: "^github\\.com"
+    line: "{{ lookup('pipe', 'ssh-keyscan -t rsa github.com') }}"
+
+- name: ensure ssh agent socket environment variable persists when sudoing
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    insertafter: "^Defaults"
+    line: "Defaults\tenv_keep += \"SSH_AUTH_SOCK\""
+    validate: "visudo -cf %s"
