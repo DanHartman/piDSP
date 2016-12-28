@@ -3,18 +3,6 @@
     update_cache: yes
     cache_valid_time: 86400
 
-- name: add keys to apt
-  apt_key:
-    url: "{{item}}"
-    state: present
-  with_items: "{{apt_keys}}"
-
-- name: add ppas to apt
-  apt_repository:
-    repo: "{{item}}"
-    state: present
-  with_items: "{{apt_ppas}}"
-
 - name: ensure apt packages are installed
   apt:
     name: "{{item}}"
