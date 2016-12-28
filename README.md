@@ -7,6 +7,7 @@ A playbook to provision a raspberry pi as a DSP box.  The original intent is to 
 -  [Additional PCB Mount RCA Jacks](https://www.hifiberry.com/shop/accessories/rca-jack-pcb-mount-1-pair/)
 -  [Fresh Raspbian Install](https://www.raspberrypi.org/downloads/raspbian/)
 -  ansible `sudo pip install ansible`
+-  [Generate SSH keys if they don't already exist](https://help.github.com/articles/generating-an-ssh-key/)
 
 #### Installation
 -  You'll need to solder one of the additional RCA Jacks to the S/PDIF Board
