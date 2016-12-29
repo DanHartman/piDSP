@@ -22,3 +22,4 @@ A playbook to provision a raspberry pi as a DSP box.  The original intent is to 
 -  `ansible-playbook -i ras.pi.ip.addr, -u pi -k deploy/ansible/user.yml` default sudo password is `raspberry`
 -  `ansible-playbook -i ras.pi.ip.addr, --ask-become-pass deploy/ansible/configure.yml` default sudo password is `123456`
 -  `ssh ras.pi.ip.addr`
+-  Set input S/PDIF to be the clock source `amixer set 'Tx Source' 'S/PDIF RX'`
