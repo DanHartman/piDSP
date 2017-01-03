@@ -5,11 +5,14 @@ A playbook to provision a raspberry pi as a DSP box.  The original intent is to 
 -  [Raspberry Pi](https://www.amazon.com/Raspberry-Pi-RASP-PI-3-Model-Motherboard/dp/B01CD5VC92)
 -  [S/PDIF Board](https://www.hifiberry.com/products/digiplus/)
 -  [Additional PCB Mount RCA Jacks](https://www.hifiberry.com/shop/accessories/rca-jack-pcb-mount-1-pair/)
+-  [0.1uF Ceramic Capacitor 0603 Package](http://www.digikey.com/product-detail/en/yageo/CC0603ZRY5V9BB104/311-1343-1-ND/2103127)
+-  [75 ohm Chip Resistor 0603 Package](http://www.digikey.com/product-detail/en/yageo/RC0603JR-0775RL/311-75GRCT-ND/729774)
 -  [Fresh Raspbian Install](https://www.raspberrypi.org/downloads/raspbian/)
 -  ansible `sudo pip install ansible`
 -  [Generate SSH keys if they don't already exist](https://help.github.com/articles/generating-an-ssh-key/)
 
 #### Installation
+-  You'll need to populate R15 with a `75 Ohm Resistor` && C9 with a `0.1uF Capacitor`
 -  You'll need to solder one of the additional RCA Jacks to the S/PDIF Board
 -  Insert SD Card into reader
 -  `df -h` To find the mount path to the SDCARD ie: `/dev/sdb`
