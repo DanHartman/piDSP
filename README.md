@@ -24,5 +24,6 @@ A playbook to provision a raspberry pi as a DSP box.  The original intent is to 
 -  connect pi to network && find ip of the ras pi
 -  `ansible-playbook -i ras.pi.ip.addr, -u pi -k deploy/ansible/user.yml` default sudo password is `raspberry`
 -  `ansible-playbook -i ras.pi.ip.addr, --ask-become-pass deploy/ansible/configure.yml` default sudo password is `123456`
+-  I did not see the device appear until I performed a power cycle
 -  `ssh ras.pi.ip.addr`
--  Set input as clock source: `amixer set 'Tx Source' 'S/PDIF RX'` && `sudo reboot` 
+
