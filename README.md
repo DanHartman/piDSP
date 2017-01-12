@@ -27,3 +27,13 @@ A playbook to provision a raspberry pi as a DSP box.  The original intent is to 
 -  I did not see the device appear until I performed a power cycle
 -  `ssh ras.pi.ip.addr`
 
+-  Set input as clock source: `amixer set 'Tx Source' 'S/PDIF RX'` && `sudo reboot`
+
+
+
+holy shit, getting midi data from floorboad is easy
+http://superuser.com/questions/737531/how-do-i-view-a-midi-device-stream
+
+we haven't parsed it into pure data, yet, but this shouldn't be difficult.
+ 
+
