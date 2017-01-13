@@ -1,0 +1,52 @@
+*nat
+:PREROUTING ACCEPT [0:0]
+:INPUT ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+:POSTROUTING ACCEPT [0:0]
+
+# {{ wan_interface }} is wan interface, # {{ lan_interface }} is LAN
+-A POSTROUTING -o {{ wan_interface }} -j MASQUERADE
+
+COMMIT
+
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+
+# Service rules
+# basic global accept rules -ICMP, loopback, traceroute, established all accepted
+-A INPUT -s 127.0.0.0/8 -d 127.0.0.0/8 -i lo -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
+-A INPUT -m state --state ESTABLISHED -j ACCEPT
+
+# enable traceroute rejections to get sent out
+-A INPUT -p udp -m udp --dport 33434:33523 -j REJECT --reject-with icmp-port-unreachable
+
+# DNS - accept from LAN
+-A INPUT -i {{ lan_interface }} -p tcp --dport 53 -j ACCEPT
+-A INPUT -i {{ lan_interface }} -p udp --dport 53 -j ACCEPT
+
+# SSH - accept from LAN
+-A INPUT -i {{ lan_interface }} -p tcp --dport 22 -j ACCEPT
+
+# SSH -accept from WAN
+-A INPUT -i {{ wan_interface }} -p tcp --dport 22 -j ACCEPT
+
+# DHCP client requests - accept from LAN
+-A INPUT -i {{ lan_interface }} -p udp --dport 67:68 -j ACCEPT
+
+# drop all other inbound traffic
+-A INPUT -j DROP
+
+# Forwarding rules
+# forward packets along established/related connections
+-A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+# forward from LAN ({{ lan_interface }}) to WAN ({{ wan_interface }})
+-A FORWARD -i {{ lan_interface }} -o {{ wan_interface }} -j ACCEPT
+
+# drop all other forwarded traffic
+-A FORWARD -j DROP
+
+COMMIT

@@ -1,0 +1,41 @@
+- name: set WAN and LAN interfaces for access point ability
+  template:
+    src: templates/networkinterfaces
+    dest: /etc/network/interfaces
+    owner: root
+    mode: 0755
+
+- name: enable forwarding between interfaces
+  template:
+    src: templates/forwarding
+    dest: /etc/sysctl.conf
+    owner: root
+    mode: 0755
+
+- name: load iptables before interfaces go live
+  template:
+    src: templates/preup
+    dest: /etc/network/if-pre-up.d/iptables
+    owner: root
+    mode: 0755
+
+- name: copy iptables ruleset
+  template:
+    src: templates/iptables
+    dest: /etc/network/iptables
+    owner: root
+    mode: 0755
+
+- name: setup dhcp and dns
+  template:
+    src: templates/dhcp
+    dest: /etc/dhcp/dhcpd.conf
+    owner: root
+    mode: 0755
+
+- name: setup the wireless AP
+  template:
+    src: templates/hostapd
+    dest: /etc/hostapd/hostapd.conf
+    owner: root
+    mode: 0755
