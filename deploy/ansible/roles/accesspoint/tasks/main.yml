@@ -35,7 +35,15 @@
 
 - name: setup the wireless AP
   template:
-    src: templates/hostapd
+    src: templates/hostapd.conf
     dest: /etc/hostapd/hostapd.conf
     owner: root
     mode: 0755
+
+- name: tell hostapd which .conf file to use
+  template:
+    src: templates/hostapd
+    dest: /etc/default/hostapd
+    owner: root
+    mode: 0755
+
