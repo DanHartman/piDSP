@@ -10,6 +10,7 @@ A playbook to provision a raspberry pi as a DSP box.  The original intent is to 
 -  [Fresh Raspbian Install](https://www.raspberrypi.org/downloads/raspbian/)
 -  ansible `sudo pip install ansible`
 -  [Generate SSH keys if they don't already exist](https://help.github.com/articles/generating-an-ssh-key/)
+-  USB WiFi transceiver
 
 #### Installation
 -  You'll need to populate R15 with a `75 Ohm Resistor` && C9 with a `0.1uF Capacitor`
@@ -26,7 +27,7 @@ A playbook to provision a raspberry pi as a DSP box.  The original intent is to 
 -  `ansible-playbook -i ras.pi.ip.addr, --ask-become-pass deploy/ansible/configure.yml` default sudo password is `123456`
 -  I did not see the device appear until I performed a power cycle
 -  `ssh ras.pi.ip.addr`
-
+- It may be my cheap EDIMAX usb dongle on the pi, but I'm unable to get devices to connect to the AP if security is enabled.  So for now, it sets up an open network.
 
 
 holy shit, getting midi data from floorboad is easy
