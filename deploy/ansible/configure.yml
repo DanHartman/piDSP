@@ -6,6 +6,7 @@
     - { role: configure, tags: ['configure'] }
     - { role: common, tags: ['common'] }
     - { role: hifiberry, tags: ['hifiberry'] }
+    - { role: accesspoint, tags: ['accesspoint'] }
   handlers:
     - name: restart ssh
       service:

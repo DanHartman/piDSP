@@ -2,6 +2,10 @@
 ansible_ssh_common_args: -o ForwardAgent=yes
 
 hostname: pidsp
+wan_interface: eth0
+lan_interface: wlan0
+pi_ssid: WuTangLAN
+wifi_password: googlybear
 
 apt_packages:
   - vim
@@ -11,4 +15,7 @@ apt_packages:
   - pd-zexy
   - pd-aubio
   - pd-csound
-
+  - isc-dhcp-server
+  - bind9
+  - hostapd
+  - haveged
