@@ -1,6 +1,8 @@
 # Raspberry Pi S/PDIF DSP box
 A playbook to provision a raspberry pi as a DSP box.  The original intent is to use it as an effects loop for a MOTU Ultralite.  Of course, it can be used with any device capable of S/PDIF connectivity.  You could use analog I/O for the PI but I already had a MOTU box and I speculate that it may have higher quality A/D and D/A than a readily availble Ras-Pi converter board would.
 
+Running these instructions should result in a Raspberry pi that will loop the S/PDIF input directly to its output.  It will also automatically generate it's own WiFi network for remote control of the DSP.
+
 #### Requirements
 -  [Raspberry Pi](https://www.amazon.com/Raspberry-Pi-RASP-PI-3-Model-Motherboard/dp/B01CD5VC92)
 -  [S/PDIF Board](https://www.hifiberry.com/products/digiplus/)
@@ -11,6 +13,7 @@ A playbook to provision a raspberry pi as a DSP box.  The original intent is to 
 -  ansible `sudo pip install ansible`
 -  [Generate SSH keys if they don't already exist](https://help.github.com/articles/generating-an-ssh-key/)
 -  USB WiFi transceiver
+-  Another singleboard CPU.  I'm using a nextthingco chip [getchip.com](getchip.com)
 
 #### Installation
 -  You'll need to populate R15 with a `75 Ohm Resistor` && C9 with a `0.1uF Capacitor`
@@ -26,9 +29,9 @@ A playbook to provision a raspberry pi as a DSP box.  The original intent is to 
 -  `ansible-playbook -i ras.pi.ip.addr, -u pi -k deploy/ansible/user.yml` default sudo password is `raspberry`
 -  `ansible-playbook -i ras.pi.ip.addr, --ask-become-pass deploy/ansible/configure.yml` default sudo password is `123456`
 -  I did not see the device appear until I performed a power cycle
--  `ssh ras.pi.ip.addr`
 - It may be my cheap EDIMAX usb dongle on the pi, but I'm unable to get devices to connect to the AP if security is enabled.  So for now, it sets up an open network.
-
+-  Connect to the remote SBC, however you need to, and set it to access the PI's wifi network.  I was using `sudo nmtui` it is from the `NetworkManager-tui` package.
+-  `ssh ras.pi.ip.addr` && `ansible-playbook provision_remote_machine_blah`
 
 holy shit, getting midi data from floorboad is easy
 http://superuser.com/questions/737531/how-do-i-view-a-midi-device-stream
