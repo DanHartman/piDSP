@@ -19,3 +19,7 @@ apt_packages:
   - bind9
   - hostapd
   - haveged
+  - ansible
+
+apt_repos:
+  - deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main

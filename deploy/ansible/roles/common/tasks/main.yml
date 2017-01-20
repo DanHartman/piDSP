@@ -1,3 +1,10 @@
+- name: ensure apt repositories are installed
+  apt_repository:
+    repo: "{{item}}"
+    state: present
+    update_cache: yes
+  with_items: "{{apt_repos}}"
+
 - name: ensure apt cache is updated
   apt:
     update_cache: yes
@@ -7,4 +14,5 @@
   apt:
     name: "{{item}}"
     state: latest
+    force: yes
   with_items: "{{apt_packages}}"
