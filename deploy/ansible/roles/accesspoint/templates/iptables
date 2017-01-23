@@ -36,6 +36,10 @@ COMMIT
 # DHCP client requests - accept from LAN
 -A INPUT -i {{ lan_interface }} -p udp --dport 67:68 -j ACCEPT
 
+# Open range of ports for communication with PUREDATA
+-A INPUT -i {{ wan_interface }} -p tcp --dport 55001:55050 -j ACCEPT
+-A INPUT -i {{ lan_interface }} -p tcp --dport 55001:55050 -j ACCEPT
+
 # drop all other inbound traffic
 -A INPUT -j DROP
 
