@@ -6,6 +6,7 @@ wan_interface: eth0
 lan_interface: wlan0
 pi_ssid: WuTangLAN
 wifi_password: googlybear
+default_puredata_patch: "/home/{{ lookup('env', 'USER') }}/inToOutLopSecond.pd"
 
 apt_packages:
   - vim

@@ -1,0 +1,10 @@
+[Unit]
+Description=Starts main Pure Data patch
+After=sound.target
+
+[Service]
+Type=simple
+ExecStart=/bin/sh /home/{{ lookup('env', 'USER') }}/pd_run.sh
+
+[Install]
+WantedBy=multi-user.target

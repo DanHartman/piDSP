@@ -1,0 +1,29 @@
+- name: copy default puredata patch over
+  template:
+    src: templates/inToOut.pd
+    dest: "/home/{{ lookup('env', 'USER') }}/inToOut.pd"
+    owner: root
+    mode: 0755
+
+- name: install a service file for systemd to launch
+  template:
+    src: templates/pd_run.service
+    dest: /etc/systemd/system/pd_run.service
+    owner: root
+    mode: 0755
+
+- name: install a service file for systemd to launch
+  template:
+    src: templates/pd_run.sh
+    dest: "/home/{{ lookup('env', 'USER') }}/pd_run.sh"
+    owner: root
+    mode: 0755
+  notify: reload systemd
+
+- name: start the pd_run service
+  systemd:
+    daemon_reload: yes
+    enabled: yes
+    state: restarted
+    name: pd_run
+  notify: reload systemd

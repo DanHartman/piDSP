@@ -7,8 +7,12 @@
     - { role: common, tags: ['common'] }
     - { role: hifiberry, tags: ['hifiberry'] }
     - { role: accesspoint, tags: ['accesspoint'] }
+    - { role: puredata, tags: ['puredata'] }
   handlers:
     - name: restart ssh
       service:
         name: ssh
         state: restarted
+    - name: reload systemd
+      become: yes
+      command: systemctl daemon-reload
