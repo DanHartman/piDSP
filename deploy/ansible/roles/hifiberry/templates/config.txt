@@ -56,3 +56,5 @@
 dtoverlay=hifiberry-digi
 
 
+disable_splash=1
+initial_turbo=40
